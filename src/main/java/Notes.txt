@@ -1,0 +1,5 @@
+
+TODO: Check the energy converter mechanism - don't think it works for any examples other than the test
+
+TODO: decide if prefer using colors or ints
+
