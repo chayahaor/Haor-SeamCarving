@@ -48,13 +48,13 @@ public class Energy {
 
     private int middleEnergy(Color up, Color down, Color left, Color right) {
 
-        int upDown = (up.getRed() - down.getRed()) ^ 2;
-        upDown += (up.getGreen() - down.getGreen()) ^ 2;
-        upDown += (up.getBlue() - down.getBlue()) ^ 2;
+        int upDown = (up.getRed() - down.getRed()) * (up.getRed() - down.getRed());
+        upDown += (up.getGreen() - down.getGreen()) * (up.getGreen() - down.getGreen());
+        upDown += (up.getBlue() - down.getBlue()) * (up.getBlue() - down.getBlue());
 
-        int leftRight = (left.getRed() - right.getRed()) ^ 2;
-        leftRight += (left.getGreen() - right.getGreen()) ^ 2;
-        leftRight += (left.getBlue() - right.getBlue()) ^ 2;
+        int leftRight = (left.getRed() - right.getRed()) * (left.getRed() - right.getRed());
+        leftRight += (left.getGreen() - right.getGreen()) * (left.getGreen() - right.getGreen());
+        leftRight += (left.getBlue() - right.getBlue()) * (left.getBlue() - right.getBlue());
 
         return upDown + leftRight;
     }
@@ -89,7 +89,7 @@ public class Energy {
     }
 
     private int adjust(int origEnergy) {
-        return (origEnergy - minEnergy) * 255 / (maxEnergy - minEnergy);
+        return (int) ((origEnergy - minEnergy) * 255.0) / (maxEnergy - minEnergy);
     }
 
     public int[][] getAdjustedEnergyTable() {

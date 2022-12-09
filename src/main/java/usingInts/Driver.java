@@ -6,7 +6,7 @@ public class Driver {
 
     public static void main(String[] args) throws IOException {
         Image image = new Image("/Seam.jpg");
-        image.saveOrigFile();
+        //image.saveOrigFile();
         image.saveEnergyFile();
     }
 }
