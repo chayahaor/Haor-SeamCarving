@@ -1,5 +1,3 @@
-package usingInts;
-
 import java.io.IOException;
 
 public class Driver {

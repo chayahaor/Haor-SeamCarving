@@ -1,5 +1,3 @@
-package usingInts;
-
 import java.awt.*;
 
 public class Energy {

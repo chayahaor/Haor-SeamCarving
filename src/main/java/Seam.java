@@ -1,5 +1,3 @@
-package usingInts;
-
 import java.util.ArrayList;
 
 public class Seam {
@@ -21,7 +19,7 @@ public class Seam {
         {
             for (int col = 0; col < widthPixels; col++)
             {
-                if (row == heightPixels - 1)
+                /*if (row == heightPixels - 1)
                 {
 
                 } else if (col == 0)
@@ -34,7 +32,7 @@ public class Seam {
                 {
 
                 }
-
+*/
             }
         }
         return smallSeam;
