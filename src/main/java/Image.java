@@ -17,11 +17,11 @@ public class Image {
         widthPixels = image.getWidth();
 
         imageMatrix = new int[heightPixels][widthPixels];
-        for (int i = 0; i < heightPixels; i++)
+        for (int row = 0; row < heightPixels; row++)
         {
-            for (int j = 0; j < widthPixels; j++)
+            for (int col = 0; col < widthPixels; col++)
             {
-                imageMatrix[i][j] = image.getRGB(j, i);
+                imageMatrix[row][col] = image.getRGB(col, row);
             }
         }
     }
