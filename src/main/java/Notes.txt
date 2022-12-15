@@ -1,5 +1,50 @@
+TODO: make energy doubles
 
-TODO: Check the energy converter mechanism - don't think it works for any examples other than the test
+TODO: consider adding pixel class
+color
+horizontal energy
+vertical energy
 
-TODO: decide if prefer using colors or ints
+TODO: Update tests
+-include a 4x4 example for energy/brightness
+-include wiki page table in tables
+-generate seams horizontally
+-generate seams vertically
+-remove horizontal seams
+-remove vertical seams
 
+TODO: Create Seam Object:
+-has an array of indexes
+
+TODO: calculate seam with the lowest energy
+-seam is array of ints
+-just the indexes (do not need both, one direction will be the index of the int)
+
+TODO: Create Seam Remover
+-takes in array and 2D array
+-returns new 2D array
+
+TODO: remove seam
+-create new array that is width-1 and height
+-Vertical seams: copy to seam and then copy after seam per row (System.ArrayCopy)
+- Horizontal seams:
+
+
+
+1. Read image into buffered image (either color[][] or int[][])
+2. calculate double[][] energy
+3. find the lowest energy vertical seam (or horizontal)
+4. remove seam
+5. Go to step 2 (until hit the number of seams you want to remove vertically and then also horizontal)
+
+
+TODO: For next week:
+-Energy
+-Calculate Seams
+-Find the lowest seam
+-Remove seams
+-Create new image
+
+
+buffered image > 2d array of color > energy 2d >
+get the lowest energy seam > remove seam from color 2d array

@@ -6,7 +6,6 @@ import java.io.IOException;
 
 public class Image {
 
-
     private int[][] imageMatrix;
     private int heightPixels = 0;
     private int widthPixels = 0;
@@ -26,7 +25,7 @@ public class Image {
         }
     }
 
-    public void saveEnergyFile() {
+    public void saveBrightnessFile() {
         File output = new File("C:\\Users\\chaya\\Downloads\\EnergyFile2.jpg");
         BufferedImage bufferedImage =
                 new BufferedImage(widthPixels, heightPixels, BufferedImage.TYPE_INT_RGB);
@@ -53,26 +52,4 @@ public class Image {
         }
     }
 
-    public void saveOrigFile() {
-        File output = new File("C:\\Users\\chaya\\Downloads\\OriginalFile.jpg");
-        BufferedImage bufferedImage =
-                new BufferedImage(widthPixels, heightPixels, BufferedImage.TYPE_INT_RGB);
-
-        try
-        {
-            for (int row = 0; row < heightPixels; row++)
-            {
-                for (int col = 0; col < widthPixels; col++)
-                {
-                    int color = imageMatrix[row][col];
-
-                    bufferedImage.setRGB(col, row, imageMatrix[row][col]);
-                }
-            }
-            ImageIO.write(bufferedImage, "jpg", output);
-        } catch (Exception exception)
-        {
-            exception.printStackTrace();
-        }
-    }
 }
