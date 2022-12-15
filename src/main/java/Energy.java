@@ -7,13 +7,13 @@ public class Energy {
     private int[][] startingImage;
     private int minEnergy = (255 * 255) * 6;
     private int maxEnergy = (255 * 255) * 6;
-    private int[][] energyTable;
-    private int[][] adjusted;
+    private double[][] energyTable;
+    private double[][] adjusted;
 
     public Energy(int width, int height, int[][] startImage) {
         widthPixels = width;
         heightPixels = height;
-        energyTable = new int[heightPixels][widthPixels];
+        energyTable = new double[heightPixels][widthPixels];
         startingImage = startImage;
         calculateOrigEnergy();
         adjustEnergyTable();
@@ -75,7 +75,7 @@ public class Energy {
     private void adjustEnergyTable() {
         if (maxEnergy != 1)
         {
-            adjusted = new int[heightPixels][widthPixels];
+            adjusted = new double[heightPixels][widthPixels];
             for (int row = 0; row < heightPixels; row++)
             {
                 for (int col = 0; col < widthPixels; col++)
@@ -86,11 +86,11 @@ public class Energy {
         }
     }
 
-    private int adjust(int origEnergy) {
-        return (int) ((origEnergy - minEnergy) * 255.0) / (maxEnergy - minEnergy);
+    private double adjust(double origEnergy) {
+        return ((origEnergy - minEnergy) * 255.0) / (maxEnergy - minEnergy);
     }
 
-    public int[][] getAdjustedEnergyTable() {
+    public double[][] getAdjustedEnergyTable() {
         return adjusted;
     }
 

@@ -31,7 +31,7 @@ public class Image {
                 new BufferedImage(widthPixels, heightPixels, BufferedImage.TYPE_INT_RGB);
 
         Energy energy = new Energy(widthPixels, heightPixels, imageMatrix);
-        int[][] energyTable = energy.getAdjustedEnergyTable();
+        double[][] energyTable = energy.getAdjustedEnergyTable();
 
         try
         {
@@ -39,7 +39,7 @@ public class Image {
             {
                 for (int col = 0; col < widthPixels; col++)
                 {
-                    int spot = energyTable[row][col];
+                    int spot = (int) energyTable[row][col];
                     Color color = new Color(spot, spot, spot);
 
                     bufferedImage.setRGB(col, row, color.getRGB());

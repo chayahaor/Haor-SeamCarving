@@ -18,7 +18,7 @@ class EnergyTest {
 
         int[][] image = new int[][]{{one, two, three}, {two, three, one}, {three, one, two}};
         Energy energy = new Energy(image.length, image[0].length, image);
-        int[][] calculatedEnergy = energy.getAdjustedEnergyTable();
+        double[][] calculatedEnergy = energy.getAdjustedEnergyTable();
 
         //when
         int[][] expected = new int[][]{{255, 255, 255}, {255, 0, 255}, {255, 255, 255}};

@@ -1,4 +1,3 @@
-TODO: make energy doubles
 
 TODO: consider adding pixel class
 color
