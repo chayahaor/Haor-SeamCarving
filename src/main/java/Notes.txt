@@ -1,29 +1,23 @@
 
-TODO: consider adding pixel class
-color
-horizontal energy
-vertical energy
-
 TODO: Update tests
--include a 4x4 example for energy/brightness
 -include wiki page table in tables
 -generate seams horizontally
 -generate seams vertically
 -remove horizontal seams
 -remove vertical seams
 
-TODO: Create Seam Object:
+TODO: Create SeamObject:
 -has an array of indexes
 
-TODO: calculate seam with the lowest energy
+TODO: calculate seamObject with the lowest energy
 -seam is array of ints
 -just the indexes (do not need both, one direction will be the index of the int)
 
-TODO: Create Seam Remover
+TODO: Create SeamObject Remover
 -takes in array and 2D array
 -returns new 2D array
 
-TODO: remove seam
+TODO: remove seamObject
 -create new array that is width-1 and height
 -Vertical seams: copy to seam and then copy after seam per row (System.ArrayCopy)
 - Horizontal seams:
