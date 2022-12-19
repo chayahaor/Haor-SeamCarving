@@ -1,17 +1,10 @@
 
 TODO: Update tests
 -include wiki page table in tables
--generate seams horizontally
 -generate seams vertically
--remove horizontal seams
+-generate seams horizontally
 -remove vertical seams
-
-TODO: Create SeamObject:
--has an array of indexes
-
-TODO: calculate seamObject with the lowest energy
--seam is array of ints
--just the indexes (do not need both, one direction will be the index of the int)
+-remove horizontal seams
 
 TODO: Create SeamObject Remover
 -takes in array and 2D array
@@ -32,11 +25,11 @@ TODO: remove seamObject
 
 
 TODO: For next week:
--Energy
--Calculate Seams
--Find the lowest seam
--Remove seams
--Create new image
+-Energy - done
+-Calculate Seams - TODO: Write tests
+-Find the lowest seam - TODO: Write tests
+-Remove seams -
+-Create new image -
 
 
 buffered image > 2d array of color > energy 2d >
