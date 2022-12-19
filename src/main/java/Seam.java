@@ -48,7 +48,8 @@ public class Seam {
         }
     }
 
-    private void checkForVertical(Pixel self, Pixel downLeft, Pixel directlyDown, Pixel downRight, int col) {
+    private void checkForVertical(Pixel self, Pixel downLeft,
+                                  Pixel directlyDown, Pixel downRight, int col) {
         if (directlyDown.getCellEnergy() < downLeft.getCellEnergy()
             && directlyDown.getCellEnergy() < downRight.getCellEnergy())
         { //down is smallest
@@ -58,15 +59,16 @@ public class Seam {
                    && downLeft.getCellEnergy() < downRight.getCellEnergy())
         { //left is smallest
             downLeft.setEnergyV(downLeft.getEnergyV() + self.getEnergyV());
-            seam.add(col-1);
+            seam.add(col - 1);
         } else //right is smallest
         {
             downRight.setEnergyV(downRight.getEnergyV() + self.getEnergyV());
-            seam.add(col+1);
+            seam.add(col + 1);
         }
     }
 
-    private void checkForVertical(Pixel self, Pixel directlyDown, Pixel diagonal, int col, int moveOver) {
+    private void checkForVertical(Pixel self, Pixel directlyDown,
+                                  Pixel diagonal, int col, int moveOver) {
         if (directlyDown.getCellEnergy() < diagonal.getCellEnergy())
         {
             directlyDown.setEnergyV(directlyDown.getCellEnergy() + self.getEnergyV());
