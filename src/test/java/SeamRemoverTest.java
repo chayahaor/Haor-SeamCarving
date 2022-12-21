@@ -81,7 +81,6 @@ class SeamRemoverTest {
 
         ArrayList<Integer> toRemove = new ArrayList<>(Arrays.asList(0, 1, 1));
         SeamRemover seamRemover = new SeamRemover(image, toRemove);
-
-        assertSame(ending, seamRemover.getEnding());
+        assertTrue(Arrays.deepEquals(ending, seamRemover.getEnding()));
     }
 }

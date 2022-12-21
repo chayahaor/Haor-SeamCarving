@@ -8,22 +8,19 @@ public class SeamRemover {
     public SeamRemover(Pixel[][] starting, ArrayList<Integer> toRemove) {
         //TODO: this is for vertical seams only
         this.starting = starting;
-        ending = new Pixel[starting.length][starting[0].length];
+        ending = new Pixel[starting.length][starting[0].length - 1];
         seamRemoving = toRemove;
         removeVertical();
     }
 
     private void removeVertical() {
-        int cols = starting[0].length - 2;
+        int cols = starting[0].length - 1;
         int spot;
         for (int row = 0; row < starting.length; row++)
         {
             spot = seamRemoving.get(row);
-            System.arraycopy(starting, 0, ending, 0, spot);
-            //TODO: fix so that it actually removes it. Now seems to have 0/1 problem
-            System.arraycopy(starting, spot + 1, ending, spot, cols - spot - 1);
-            //srcPos has a +1 since skipping the element
-            // -1 at end because skipping the element when copying
+            System.arraycopy(starting[row], 0, ending[row], 0, spot);
+            System.arraycopy(starting[row], spot + 1, ending[row], spot, cols - spot);
         }
     }
 

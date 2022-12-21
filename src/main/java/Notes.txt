@@ -22,8 +22,8 @@ TODO: Create SeamObject Remover
 TODO: For next week:
 -Energy - done
 -Find the lowest V seam - TODO: Is there a better way to mock?
--Remove V seams - TODO: fix actual method - I think there is a 0/1 error in the logic
--Create new image - TODO:
+-Remove V seams - done
+-Create new image -
 
 -Horizontal Calculate Seams - TODO:
 -Horizontal find the lowest seam - TODO:
