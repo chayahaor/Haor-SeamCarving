@@ -1,16 +1,17 @@
 TODO: update so that chooses if removing vertical or horizontal
 -now it calls the remove vertical automatically in constructor
+-in general, update constructors so that it does not do too much
 
-TODO: Update tests
--include wiki page table in tables
--generate seams vertically
--generate seams horizontally
+TODO: Add tests
 -remove vertical seams
+-generate seams horizontally
 -remove horizontal seams
 
 TODO: Create SeamObject Remover
 -takes in array and 2D array
 -returns new 2D array
+-LOGICAL PROBLEM IN MY CODE - FIND IT
+
 
 1. Read image into buffered image (either color[][] or int[][])
 2. calculate double[][] energy
@@ -20,12 +21,13 @@ TODO: Create SeamObject Remover
 
 TODO: For next week:
 -Energy - done
--Calculate Seams - TODO: Is there a better way to mock?
--Find the lowest seam - TODO: Write tests
--Remove seams - TODO:
+-Find the lowest V seam - TODO: Is there a better way to mock?
+-Remove V seams - TODO: fix actual method - I think there is a 0/1 error in the logic
 -Create new image - TODO:
+
 -Horizontal Calculate Seams - TODO:
 -Horizontal find the lowest seam - TODO:
+-Remove horizontal seam - TODO:
 
 buffered image > 2d array of color > energy 2d >
 get the lowest energy seam > remove seam from color 2d array
