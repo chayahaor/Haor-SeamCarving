@@ -9,9 +9,10 @@ public class SeamRemover {
         this.starting = starting;
         ending = new Pixel[starting.length][starting[0].length];
         seamRemoving = toRemove;
+        removeVertical();
     }
 
-    public void removeVertical() {
+    private void removeVertical() {
         int cols = starting[0].length;
         int spot;
         for (int row = 0; row < starting.length; row++)
@@ -22,5 +23,7 @@ public class SeamRemover {
         }
     }
 
-
+    public Pixel[][] getEnding() {
+        return ending;
+    }
 }

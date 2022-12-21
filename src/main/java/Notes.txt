@@ -1,3 +1,5 @@
+TODO: update so that chooses if removing vertical or horizontal
+-now it calls the remove vertical automatically in constructor
 
 TODO: Update tests
 -include wiki page table in tables
@@ -10,27 +12,20 @@ TODO: Create SeamObject Remover
 -takes in array and 2D array
 -returns new 2D array
 
-TODO: remove seamObject
--create new array that is width-1 and height
--Vertical seams: copy to seam and then copy after seam per row (System.ArrayCopy)
-- Horizontal seams:
-
-
-
 1. Read image into buffered image (either color[][] or int[][])
 2. calculate double[][] energy
 3. find the lowest energy vertical seam (or horizontal)
 4. remove seam
 5. Go to step 2 (until hit the number of seams you want to remove vertically and then also horizontal)
 
-
 TODO: For next week:
 -Energy - done
--Calculate Seams - TODO: Write tests
+-Calculate Seams - TODO: Is there a better way to mock?
 -Find the lowest seam - TODO: Write tests
--Remove seams -
--Create new image -
-
+-Remove seams - TODO:
+-Create new image - TODO:
+-Horizontal Calculate Seams - TODO:
+-Horizontal find the lowest seam - TODO:
 
 buffered image > 2d array of color > energy 2d >
 get the lowest energy seam > remove seam from color 2d array

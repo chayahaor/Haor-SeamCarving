@@ -7,11 +7,13 @@ public class Seam {
     private Pixel[][] startingTable;
     private ArrayList<Integer> lowestSeam;
 
-    public Seam(Pixel[][] energyTable) {
-        widthPixels = energyTable[0].length;
-        heightPixels = energyTable.length;
-        startingTable = energyTable;
+    public Seam(Pixel[][] pixelTable) {
+        widthPixels = pixelTable[0].length;
+        heightPixels = pixelTable.length;
+        startingTable = pixelTable;
         lowestSeam = new ArrayList<>();
+        calculateVerticalEnergy();
+        calculateLowestVerticalSeam();
     }
 
     private void calculateVerticalEnergy() {
@@ -22,21 +24,21 @@ public class Seam {
                 if (col == 0)
                 {
                     //left row -> don't check for low pixel to bottom left
-                    checkForVertical(startingTable[row][col],
+                    findLowestVerticalBelow(startingTable[row][col],
                             startingTable[row + 1][col],
                             startingTable[row + 1][col + 1]); //diagonal is to the right
 
                 } else if (col == widthPixels - 1)
                 {
                     //right row -> don't check for low pixel to bottom right
-                    checkForVertical(startingTable[row][col],
+                    findLowestVerticalBelow(startingTable[row][col],
                             startingTable[row + 1][col],
                             startingTable[row + 1][col - 1]); //diagonal is to the left
 
                 } else
                 {
                     //regular pixel -> check for low pixel in three spots
-                    checkForVertical(startingTable[row][col],
+                    findLowestVerticalBelow(startingTable[row][col],
                             startingTable[row + 1][col - 1],
                             startingTable[row + 1][col],
                             startingTable[row + 1][col + 1]);
@@ -45,8 +47,8 @@ public class Seam {
         }
     }
 
-    private void checkForVertical(Pixel self, Pixel downLeft,
-                                  Pixel directlyDown, Pixel downRight) {
+    private void findLowestVerticalBelow(Pixel self, Pixel downLeft,
+                                         Pixel directlyDown, Pixel downRight) {
         if (directlyDown.getCellEnergy() < downLeft.getCellEnergy()
             && directlyDown.getCellEnergy() < downRight.getCellEnergy())
         { //down is smallest
@@ -61,8 +63,8 @@ public class Seam {
         }
     }
 
-    private void checkForVertical(Pixel self, Pixel directlyDown,
-                                  Pixel diagonal) {
+    private void findLowestVerticalBelow(Pixel self, Pixel directlyDown,
+                                         Pixel diagonal) {
         if (directlyDown.getCellEnergy() < diagonal.getCellEnergy())
         {
             directlyDown.setEnergyV(directlyDown.getCellEnergy() + self.getEnergyV());
@@ -79,8 +81,8 @@ public class Seam {
         //special case for bottom row - looking across instead of up
         for (int col = 0; col < widthPixels - 1; col++)
         {
-            if (startingTable[heightPixels][col].getEnergyV()
-                < startingTable[heightPixels][col + 1].getEnergyV())
+            if (startingTable[heightPixels - 1][col].getEnergyV()
+                < startingTable[heightPixels - 1][col + 1].getEnergyV())
             {
                 indexLowest = col;
             }
@@ -88,7 +90,7 @@ public class Seam {
         lowestSeam.add(indexLowest);
 
 
-        for (int row = 0; row < heightPixels; row++)
+        for (int row = 1; row < heightPixels; row++)
         {
             if (indexLowest != 0 && indexLowest != widthPixels)
             {
@@ -146,5 +148,9 @@ public class Seam {
         {
             return indexLowest - 1;
         }
+    }
+
+    public ArrayList<Integer> getLowestSeam() {
+        return lowestSeam;
     }
 }
