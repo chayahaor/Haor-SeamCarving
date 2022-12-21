@@ -14,11 +14,11 @@ public class Energy {
         this.heightPixels = height;
         energyTable = new double[heightPixels][widthPixels];
         this.startingImage = startImage;
-        calculateOrigEnergy();
+        calculateOriginalEnergy();
         adjustEnergyTable();
     }
 
-    private void calculateOrigEnergy() {
+    private void calculateOriginalEnergy() {
         double currentEnergy;
         for (int row = 0; row < heightPixels; row++)
         {

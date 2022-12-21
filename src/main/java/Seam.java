@@ -78,7 +78,7 @@ public class Seam {
     private void calculateLowestVerticalSeam() {
 
         int indexLowest = 0;
-        //special case for bottom row - looking across instead of up
+        //special case for bottom row - find the lowest pixel energy across
         for (int col = 0; col < widthPixels - 1; col++)
         {
             if (startingTable[heightPixels - 1][col].getEnergyV()
@@ -89,7 +89,10 @@ public class Seam {
         }
         lowestSeam.add(indexLowest);
 
-
+        //for the lowest pixel in the row,
+        // look above it and set the smallest one above as next lowest pixel
+        //and add the lowest pixel to the seam
+        //special cases added in for edges since cannot check both diagonally up
         for (int row = 1; row < heightPixels; row++)
         {
             if (indexLowest != 0 && indexLowest != widthPixels)

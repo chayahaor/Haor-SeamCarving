@@ -29,35 +29,26 @@ public class Image {
     }
 
     public void saveBrightnessFile() {
-        File output = new File("C:\\Users\\chaya\\Downloads\\EnergyFile2.jpg");
         BufferedImage bufferedImage =
                 new BufferedImage(widthPixels, heightPixels, BufferedImage.TYPE_INT_RGB);
 
-        double[][] energyTable = new double[heightPixels][widthPixels];
         for (int row = 0; row < heightPixels; row++)
         {
             for (int col = 0; col < widthPixels; col++)
             {
-                energyTable[row][col] = pixelMatrix[row][col].getCellEnergy();
+                int spot = (int) pixelMatrix[row][col].getCellEnergy();
+                Color color = new Color(spot, spot, spot);
+
+                bufferedImage.setRGB(col, row, color.getRGB());
             }
         }
-
         try
         {
-            for (int row = 0; row < heightPixels; row++)
-            {
-                for (int col = 0; col < widthPixels; col++)
-                {
-                    int spot = (int) energyTable[row][col];
-                    Color color = new Color(spot, spot, spot);
-
-                    bufferedImage.setRGB(col, row, color.getRGB());
-                }
-            }
-            ImageIO.write(bufferedImage, "jpg", output);
-        } catch (Exception exception)
+            File file = new File("brightness.jpg");
+            ImageIO.write(bufferedImage, "jpg", file);
+        } catch (IOException e)
         {
-            exception.printStackTrace();
+            e.printStackTrace();
         }
     }
 
