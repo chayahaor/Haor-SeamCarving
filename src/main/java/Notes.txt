@@ -3,14 +3,8 @@ TODO: update so that chooses if removing vertical or horizontal
 -in general, update constructors so that it does not do too much
 
 TODO: Add tests
--remove vertical seams
 -generate seams horizontally
 -remove horizontal seams
-
-TODO: Create SeamObject Remover
--takes in array and 2D array
--returns new 2D array
--LOGICAL PROBLEM IN MY CODE - FIND IT
 
 
 1. Read image into buffered image (either color[][] or int[][])
@@ -19,12 +13,9 @@ TODO: Create SeamObject Remover
 4. remove seam
 5. Go to step 2 (until hit the number of seams you want to remove vertically and then also horizontal)
 
-TODO: For next week:
--Energy - done
--Find the lowest V seam - TODO: Is there a better way to mock?
--Remove V seams - done
--Create new image -
+TODO: figure out how to mock tests or just call classes?
 
+-Create new image - TODO:
 -Horizontal Calculate Seams - TODO:
 -Horizontal find the lowest seam - TODO:
 -Remove horizontal seam - TODO:
