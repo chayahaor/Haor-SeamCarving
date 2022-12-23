@@ -33,7 +33,8 @@ class EnergyTest {
                         new Pixel(color1.getRGB()),
                         new Pixel(color2.getRGB()),
                         new Pixel(color3.getRGB())}};
-        new Energy(image.length, image[0].length, image);
+        Energy energy = new Energy();
+        energy.updateEnergy(image);
         double[][] calculatedEnergy = new double[image.length][image[0].length];
         for (int row = 0; row < calculatedEnergy[0].length; row++)
         {
@@ -71,7 +72,8 @@ class EnergyTest {
                 {new Pixel(color3.getRGB()),
                         new Pixel(color1.getRGB()),
                         new Pixel(color2.getRGB())}};
-        new Energy(image.length, image[0].length, image);
+        Energy energy = new Energy();
+        energy.updateEnergy(image);
         double[][] calculatedEnergy = new double[image.length][image[0].length];
         for (int row = 0; row < calculatedEnergy.length; row++)
         {

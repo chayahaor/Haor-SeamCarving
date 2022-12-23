@@ -1,19 +1,15 @@
 import java.util.ArrayList;
 
 public class SeamRemover {
-    Pixel[][] starting;
     Pixel[][] ending;
-    ArrayList<Integer> seamRemoving;
 
-    public SeamRemover(Pixel[][] starting, ArrayList<Integer> toRemove) {
-        //TODO: this is for vertical seams only
-        this.starting = starting;
-        ending = new Pixel[starting.length][starting[0].length - 1];
-        seamRemoving = toRemove;
-        removeVertical();
+    public SeamRemover() {
+
     }
 
-    private void removeVertical() {
+    public void removeVertical(Pixel[][]starting,ArrayList<Integer> seamRemoving ) {
+        ending = new Pixel[starting.length][starting[0].length - 1];
+
         int cols = starting[0].length - 1;
         int spot;
         for (int row = 0; row < starting.length; row++)

@@ -2,16 +2,20 @@ import java.awt.*;
 
 public class Energy {
 
-    private final int widthPixels;
-    private final int heightPixels;
-    private final Pixel[][] startingImage;
+    private int widthPixels;
+    private int heightPixels;
+    private Pixel[][] startingImage;
     private double minEnergy = 255 * 255 * 6;
     private double maxEnergy = 255 * 255 * 6;
     private double[][] energyTable;
 
-    public Energy(int width, int height, Pixel[][] startImage) {
-        this.widthPixels = width;
-        this.heightPixels = height;
+    public Energy() {
+
+    }
+
+    public void updateEnergy(Pixel[][] startImage) {
+        this.widthPixels = startImage.length;
+        this.heightPixels = startImage[0].length;
         energyTable = new double[heightPixels][widthPixels];
         this.startingImage = startImage;
         calculateOriginalEnergy();

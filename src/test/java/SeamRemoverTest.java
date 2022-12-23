@@ -80,7 +80,8 @@ class SeamRemoverTest {
         ending[2][3] = pixel24;
 
         ArrayList<Integer> toRemove = new ArrayList<>(Arrays.asList(0, 1, 1));
-        SeamRemover seamRemover = new SeamRemover(image, toRemove);
+        SeamRemover seamRemover = new SeamRemover();
+        seamRemover.removeVertical(image, toRemove);
         assertTrue(Arrays.deepEquals(ending, seamRemover.getEnding()));
     }
 }

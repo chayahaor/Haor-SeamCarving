@@ -24,8 +24,6 @@ public class Image {
                 pixelMatrix[row][col] = new Pixel(image.getRGB(col, row));
             }
         }
-        new Energy(widthPixels, heightPixels, getPixelMatrix()); //calculates energy
-
     }
 
     public void saveBrightnessFile() {
@@ -52,28 +50,16 @@ public class Image {
         }
     }
 
-
     public Pixel[][] getPixelMatrix() {
         return pixelMatrix;
-    }
-
-    public void setPixelMatrix(Pixel[][] pixelMatrix) {
-        this.pixelMatrix = pixelMatrix;
     }
 
     public int getHeightPixels() {
         return heightPixels;
     }
 
-    public void setHeightPixels(int heightPixels) {
-        this.heightPixels = heightPixels;
-    }
-
     public int getWidthPixels() {
         return widthPixels;
     }
 
-    public void setWidthPixels(int widthPixels) {
-        this.widthPixels = widthPixels;
-    }
 }

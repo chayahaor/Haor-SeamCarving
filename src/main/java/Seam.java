@@ -2,18 +2,12 @@ import java.util.ArrayList;
 
 public class Seam {
 
-    private final int widthPixels;
-    private final int heightPixels;
+    private int widthPixels;
+    private int heightPixels;
     private Pixel[][] startingTable;
     private ArrayList<Integer> lowestSeam;
 
-    public Seam(Pixel[][] pixelTable) {
-        widthPixels = pixelTable[0].length;
-        heightPixels = pixelTable.length;
-        startingTable = pixelTable;
-        lowestSeam = new ArrayList<>();
-        calculateVerticalEnergy();
-        calculateLowestVerticalSeam();
+    public Seam() {
     }
 
     private void calculateVerticalEnergy() {
@@ -75,8 +69,12 @@ public class Seam {
     }
 
 
-    private void calculateLowestVerticalSeam() {
-
+    public void calculateLowestVerticalSeam(Pixel[][] pixelTable) {
+        widthPixels = pixelTable[0].length;
+        heightPixels = pixelTable.length;
+        startingTable = pixelTable;
+        lowestSeam = new ArrayList<>();
+        calculateVerticalEnergy(); //right before calculate seam, update the vertical energy
         int indexLowest = 0;
         //special case for bottom row - find the lowest pixel energy across
         for (int col = 0; col < widthPixels - 1; col++)
@@ -153,7 +151,7 @@ public class Seam {
         }
     }
 
-    public ArrayList<Integer> getLowestSeam() {
+    public ArrayList<Integer> getLowestVerticalSeam() {
         return lowestSeam;
     }
 }

@@ -60,9 +60,9 @@ class SeamTest {
         image[2][4] = pixel24;
 
         //when
-        Seam seam = new Seam(image);
-
+        Seam seam = new Seam();
+        seam.calculateLowestVerticalSeam(image);
         //then
-        assertEquals(new ArrayList<>(Arrays.asList(0, 1, 1)), seam.getLowestSeam());
+        assertEquals(new ArrayList<>(Arrays.asList(0, 1, 1)), seam.getLowestVerticalSeam());
     }
 }
