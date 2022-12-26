@@ -105,6 +105,7 @@ class SeamTest {
         Seam seam = new Seam();
         seam.calculateLowestHorizontalSeam(image);
         //then
-        assertEquals(new ArrayList<>(Arrays.asList(0, 1, 0, 1, 2)), seam.getLowestHorizontalSeam());
+        //expected goes from right to left
+        assertEquals(new ArrayList<>(Arrays.asList(2, 1, 0, 1, 0)), seam.getLowestHorizontalSeam());
     }
 }

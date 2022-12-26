@@ -13,7 +13,7 @@ public class Energy {
 
     }
 
-    public void updateEnergy(Pixel[][] startImage) {
+    public void updateCellEnergy(Pixel[][] startImage) {
         this.widthPixels = startImage.length;
         this.heightPixels = startImage[0].length;
         energyTable = new double[heightPixels][widthPixels];

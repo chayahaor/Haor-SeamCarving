@@ -7,8 +7,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class EnergyTest {
 
-    //TODO: change from using pixel class to using mock
-
     @Test
     void energy4x4() {
         //given
@@ -34,7 +32,7 @@ class EnergyTest {
                         new Pixel(color2.getRGB()),
                         new Pixel(color3.getRGB())}};
         Energy energy = new Energy();
-        energy.updateEnergy(image);
+        energy.updateCellEnergy(image);
         double[][] calculatedEnergy = new double[image.length][image[0].length];
         for (int row = 0; row < calculatedEnergy[0].length; row++)
         {
@@ -73,7 +71,7 @@ class EnergyTest {
                         new Pixel(color1.getRGB()),
                         new Pixel(color2.getRGB())}};
         Energy energy = new Energy();
-        energy.updateEnergy(image);
+        energy.updateCellEnergy(image);
         double[][] calculatedEnergy = new double[image.length][image[0].length];
         for (int row = 0; row < calculatedEnergy.length; row++)
         {

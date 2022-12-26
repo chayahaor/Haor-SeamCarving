@@ -5,7 +5,7 @@ public class Driver {
     public static void main(String[] args) throws IOException {
         Image image = new Image("/Seam.jpg");
         Energy energy = new Energy();
-        energy.updateEnergy(image.getPixelMatrix());
+        energy.updateCellEnergy(image.getPixelMatrix());
         Seam seam = new Seam();
         seam.calculateLowestVerticalSeam(image.getPixelMatrix());
         SeamRemover seamRemover = new SeamRemover();

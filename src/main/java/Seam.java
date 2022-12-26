@@ -7,11 +7,13 @@ public class Seam {
     private Pixel[][] startingTable;
     private ArrayList<Integer> lowestSeam;
 
-    public Seam() {
+    public Seam()
+    {
     }
 
 
-    public void calculateLowestVerticalSeam(Pixel[][] pixelTable) {
+    public void calculateLowestVerticalSeam(Pixel[][] pixelTable)
+    {
         widthPixels = pixelTable[0].length;
         heightPixels = pixelTable.length;
         startingTable = pixelTable;
@@ -52,7 +54,8 @@ public class Seam {
         }
     }
 
-    private void calculateVerticalEnergy() {
+    private void calculateVerticalEnergy()
+    {
         double energy;
 
         for (int col = 0; col < widthPixels; col++)
@@ -92,7 +95,8 @@ public class Seam {
     }
 
     private double findLowestVerticalBelow(Pixel self, Pixel downLeft,
-                                           Pixel directlyDown, Pixel downRight) {
+                                           Pixel directlyDown, Pixel downRight)
+    {
         double energy;
         if (directlyDown.getCellEnergy() < downLeft.getCellEnergy()
             && directlyDown.getCellEnergy() < downRight.getCellEnergy())
@@ -110,7 +114,8 @@ public class Seam {
     }
 
     private double findLowestVerticalBelow(Pixel self, Pixel directlyDown,
-                                           Pixel diagonal) {
+                                           Pixel diagonal)
+    {
         double energy;
         if (directlyDown.getCellEnergy() < diagonal.getCellEnergy())
         {
@@ -122,7 +127,8 @@ public class Seam {
         return energy;
     }
 
-    private int findLowestIndexAbove(int indexLowest, int row) {
+    private int findLowestIndexAbove(int indexLowest, int row)
+    {
         if (startingTable[row][indexLowest - 1].getEnergyV()
             < startingTable[row][indexLowest + 1].getEnergyV()
             && startingTable[row][indexLowest - 1].getEnergyV()
@@ -141,7 +147,8 @@ public class Seam {
         return indexLowest;
     }
 
-    private int findLowestIndexTopRight(int indexLowest, int row) {
+    private int findLowestIndexTopRight(int indexLowest, int row)
+    {
         if (startingTable[row][indexLowest].getEnergyV()
             < startingTable[row][indexLowest + 1].getEnergyV())
         {
@@ -152,7 +159,8 @@ public class Seam {
         }
     }
 
-    private int findLowestIndexTopLeft(int indexLowest, int row) {
+    private int findLowestIndexTopLeft(int indexLowest, int row)
+    {
         if (startingTable[row][indexLowest].getEnergyV()
             < startingTable[row][indexLowest - 1].getEnergyV())
         {
@@ -163,12 +171,14 @@ public class Seam {
         }
     }
 
-    public ArrayList<Integer> getLowestVerticalSeam() {
+    public ArrayList<Integer> getLowestVerticalSeam()
+    {
         return lowestSeam;
     }
 
 
-    public void calculateLowestHorizontalSeam(Pixel[][] pixelTable) {
+    public void calculateLowestHorizontalSeam(Pixel[][] pixelTable)
+    {
         widthPixels = pixelTable[0].length;
         heightPixels = pixelTable.length;
         startingTable = pixelTable;
@@ -182,34 +192,25 @@ public class Seam {
             if (startingTable[indexLowestRow][widthPixels - 1].getEnergyH()
                 < startingTable[row + 1][widthPixels - 1].getEnergyH())
             {
-                indexLowestRow = row;
+                indexLowestRow = indexLowestRow;
+            } else
+            {
+                indexLowestRow = row + 1;
             }
         }
         lowestSeam.add(indexLowestRow);
 
-        //for the lowest pixel in the col,
-        //look left of it and set the smallest one to the left as next lowest pixel
-        //and add the lowest pixel to the seam
-        //special cases added in for edges since cannot check both diagonally left
+        //go through rest of columns using lowestIndex as row
+        //check for lowest horizontal energy to the left
         for (int col = widthPixels - 1; col > 0; col--)
         {
-            if (indexLowestRow == 0) //can only look down left and directly left
-            {
-                indexLowestRow = findLowestIndexLeft(indexLowestRow, col);
-            } else if (indexLowestRow == heightPixels - 1)
-            {
-                // can only look up left and directly left
-                indexLowestRow = findLowestIndexLeft(indexLowestRow, col);
-            } else
-            {
-                //not a border
-                indexLowestRow = findLowestIndexLeft(indexLowestRow, col);
-            }
+            indexLowestRow = findLowestIndexLeft(indexLowestRow, col);
             lowestSeam.add(indexLowestRow);
         }
     }
 
-    private void calculateHorizontalEnergy() {
+    private void calculateHorizontalEnergy()
+    {
         for (int row = 0; row < heightPixels; row++)
         {
             startingTable[row][0].setEnergyH(startingTable[row][0].getCellEnergy());
@@ -225,7 +226,8 @@ public class Seam {
         }
     }
 
-    private double getLowestHorizontalEnergy(int row, int col) {
+    private double getLowestHorizontalEnergy(int row, int col)
+    {
         int colBefore = col - 1;
         double minEnergy;
 
@@ -249,29 +251,22 @@ public class Seam {
         return minEnergy;
     }
 
-    private int findLowestIndexLeft(int indexLowest, int col) {
+    private int findLowestIndexLeft(int indexLowest, int col)
+    {
         int lowestLeftCol;
         int colBefore = col - 1;
         if (indexLowest == 0)
         {
-            if (startingTable[indexLowest][colBefore].getEnergyH()
-                < startingTable[indexLowest + 1][colBefore].getEnergyH())
-            {
-                lowestLeftCol = indexLowest;
-            } else
-            {
-                lowestLeftCol = indexLowest + 1;
-            }
-        } else if (indexLowest == heightPixels)
+            lowestLeftCol = startingTable[indexLowest][colBefore].getEnergyH()
+                            < startingTable[indexLowest + 1][colBefore].getEnergyH()
+                    ? indexLowest
+                    : indexLowest + 1;
+        } else if (indexLowest == heightPixels - 1)
         {
-            if (startingTable[indexLowest][colBefore].getEnergyH()
-                < startingTable[indexLowest - 1][colBefore].getEnergyH())
-            {
-                lowestLeftCol = indexLowest;
-            } else
-            {
-                lowestLeftCol = indexLowest - 1;
-            }
+            lowestLeftCol = startingTable[indexLowest][colBefore].getEnergyH()
+                            < startingTable[indexLowest - 1][colBefore].getEnergyH()
+                    ? indexLowest
+                    : indexLowest - 1;
         } else
         {
             if (startingTable[indexLowest + 1][colBefore].getEnergyH()
@@ -297,7 +292,9 @@ public class Seam {
         return lowestLeftCol;
     }
 
-    public ArrayList<Integer> getLowestHorizontalSeam() {
+
+    public ArrayList<Integer> getLowestHorizontalSeam()
+    {
         return lowestSeam;
     }
 

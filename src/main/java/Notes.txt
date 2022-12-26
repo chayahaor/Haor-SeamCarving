@@ -1,6 +1,6 @@
 
 TODO: Add tests
--generate seams horizontally
+-generate seams horizontally - fix bug
 -remove horizontal seams
 
 1. Read image into buffered image (either color[][] or int[][])
@@ -10,7 +10,6 @@ TODO: Add tests
 5. Go to step 2 (until hit the number of seams you want to remove vertically and then also horizontal)
 
 -Create new image - TODO:
--Horizontal Calculate Seams - TODO:
 -Horizontal find the lowest seam - TODO:
 -Remove horizontal seam - TODO:
 
