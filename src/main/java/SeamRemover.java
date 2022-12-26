@@ -7,7 +7,7 @@ public class SeamRemover {
 
     }
 
-    public void removeVertical(Pixel[][]starting,ArrayList<Integer> seamRemoving ) {
+    public void removeVertical(Pixel[][] starting, ArrayList<Integer> seamRemoving) {
         ending = new Pixel[starting.length][starting[0].length - 1];
 
         int cols = starting[0].length - 1;

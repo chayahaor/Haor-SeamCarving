@@ -13,9 +13,8 @@ class SeamTest {
 
     @BeforeEach
     void fillImage() {
-        //TODO: how to fix up this mock mess?
         image = new Pixel[3][5];
-        Pixel pixel00 = mock(Pixel.class);
+        /*Pixel pixel00 = mock(Pixel.class);
         doReturn(1.0).when(pixel00).getCellEnergy();
         image[0][0] = pixel00;
         Pixel pixel01 = mock(Pixel.class);
@@ -40,7 +39,7 @@ class SeamTest {
         doReturn(5.0).when(pixel12).getCellEnergy();
         image[1][2] = pixel12;
         Pixel pixel13 = mock(Pixel.class);
-        doReturn(12.0).when(pixel13).getCellEnergy();
+        doReturn(2.0).when(pixel13).getCellEnergy();
         image[1][3] = pixel13;
         Pixel pixel14 = mock(Pixel.class);
         doReturn(3.0).when(pixel14).getCellEnergy();
@@ -60,7 +59,31 @@ class SeamTest {
         Pixel pixel24 = mock(Pixel.class);
         doReturn(1.0).when(pixel24).getCellEnergy();
         image[2][4] = pixel24;
+*/
+        for (int row = 0; row < 3; row++)
+        {
+            for (int col = 0; col < 5; col++)
+            {
+                image[row][col] = new Pixel(0);
+            }
+        }
+        image[0][0].setCellEnergy(1);
+        image[0][1].setCellEnergy(4);
+        image[0][2].setCellEnergy(3);
+        image[0][3].setCellEnergy(5);
+        image[0][4].setCellEnergy(2);
 
+        image[1][0].setCellEnergy(3);
+        image[1][1].setCellEnergy(2);
+        image[1][2].setCellEnergy(5);
+        image[1][3].setCellEnergy(2);
+        image[1][4].setCellEnergy(3);
+
+        image[2][0].setCellEnergy(5);
+        image[2][1].setCellEnergy(2);
+        image[2][2].setCellEnergy(4);
+        image[2][3].setCellEnergy(2);
+        image[2][4].setCellEnergy(1);
     }
 
     @Test
@@ -74,7 +97,6 @@ class SeamTest {
         assertEquals(new ArrayList<>(Arrays.asList(0, 1, 1)), seam.getLowestVerticalSeam());
     }
 
-
     @Test
     void lowestHorizontalSeam() {
         //given
@@ -83,6 +105,6 @@ class SeamTest {
         Seam seam = new Seam();
         seam.calculateLowestHorizontalSeam(image);
         //then
-        assertEquals(new ArrayList<>(Arrays.asList(0, 1, 0, 1, 0)), seam.getLowestHorizontalSeam());
+        assertEquals(new ArrayList<>(Arrays.asList(0, 1, 0, 1, 2)), seam.getLowestHorizontalSeam());
     }
 }

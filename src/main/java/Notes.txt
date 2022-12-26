@@ -3,14 +3,11 @@ TODO: Add tests
 -generate seams horizontally
 -remove horizontal seams
 
-
 1. Read image into buffered image (either color[][] or int[][])
 2. calculate double[][] energy
 3. find the lowest energy vertical seam (or horizontal)
 4. remove seam
 5. Go to step 2 (until hit the number of seams you want to remove vertically and then also horizontal)
-
-TODO: figure out how to mock tests or just call classes?
 
 -Create new image - TODO:
 -Horizontal Calculate Seams - TODO:
