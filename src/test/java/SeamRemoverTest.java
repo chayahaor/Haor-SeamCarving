@@ -1,3 +1,4 @@
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.lang.reflect.Array;
@@ -8,10 +9,12 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.mock;
 
-class SeamRemoverTest {
+class SeamRemoverTest
+{
 
     @Test
-    void removeVerticalSeam() {
+    void removeVerticalSeam()
+    {
         //given
         Pixel[][] image = new Pixel[3][5];
         Pixel pixel00 = mock(Pixel.class);
@@ -79,9 +82,14 @@ class SeamRemoverTest {
         ending[2][2] = pixel23;
         ending[2][3] = pixel24;
 
-        ArrayList<Integer> toRemove = new ArrayList<>(Arrays.asList(0, 1, 1));
+        ArrayList<Integer> toRemove = new ArrayList<>(Arrays.asList(1, 1, 0));
         SeamRemover seamRemover = new SeamRemover();
         seamRemover.removeVertical(image, toRemove);
         assertTrue(Arrays.deepEquals(ending, seamRemover.getEnding()));
+    }
+
+    @Test
+    void removeHorizontalSeam(){
+
     }
 }

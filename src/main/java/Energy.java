@@ -14,8 +14,8 @@ public class Energy {
     }
 
     public void updateCellEnergy(Pixel[][] startImage) {
-        this.widthPixels = startImage.length;
-        this.heightPixels = startImage[0].length;
+        this.widthPixels = startImage[0].length;
+        this.heightPixels = startImage.length;
         energyTable = new double[heightPixels][widthPixels];
         this.startingImage = startImage;
         calculateOriginalEnergy();

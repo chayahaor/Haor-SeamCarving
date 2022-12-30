@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 
-public class Seam {
+public class Seam
+{
 
     private int widthPixels;
     private int heightPixels;
@@ -35,7 +36,7 @@ public class Seam {
         // look above it and set the smallest one above as next lowest pixel
         //and add the lowest pixel to the seam
         //special cases added in for edges since cannot check both diagonally up
-        for (int row = 1; row < heightPixels; row++)
+        for (int row = heightPixels - 2; row >= 0; row--)
         {
             if (indexLowest != 0 && indexLowest != widthPixels)
             {
@@ -56,42 +57,39 @@ public class Seam {
 
     private void calculateVerticalEnergy()
     {
-        double energy;
-
-        for (int col = 0; col < widthPixels; col++)
-        {
-            startingTable[0][col].setEnergyV(startingTable[0][col].getCellEnergy());
-        }
-
-        for (int row = 1; row < heightPixels - 1; row++)
+        for (int row = 0; row < heightPixels; row++)
         {
             for (int col = 0; col < widthPixels; col++)
             {
-                if (col == 0)
-                {
-                    //left col -> don't check for low pixel to bottom left
-                    energy = findLowestVerticalBelow(startingTable[row][col],
-                            startingTable[row + 1][col],
-                            startingTable[row + 1][col + 1]); //diagonal is to the right
-
-                } else if (col == widthPixels - 1)
-                {
-                    //right col -> don't check for low pixel to bottom right
-                    energy = findLowestVerticalBelow(startingTable[row][col],
-                            startingTable[row + 1][col],
-                            startingTable[row + 1][col - 1]); //diagonal is to the left
-
-                } else
-                {
-                    //regular pixel -> check for low pixel in three spots
-                    energy = findLowestVerticalBelow(startingTable[row][col],
-                            startingTable[row + 1][col - 1],
-                            startingTable[row + 1][col],
-                            startingTable[row + 1][col + 1]);
-                }
-                startingTable[row][col].setEnergyV(energy);
+                startingTable[row][col].setEnergyV(getLowestVerticalEnergy(row, col)
+                                                   + startingTable[row][col].getCellEnergy());
             }
         }
+    }
+
+    private double getLowestVerticalEnergy(int row, int col)
+    {
+        int rowAbove = row - 1;
+        double minEnergy;
+
+        if (row == 0) //all the way on top
+        {
+            minEnergy = 0;
+        } else if (col == 0) //all the way on the left
+        {
+            minEnergy = Math.min(startingTable[rowAbove][col].getEnergyH(),
+                    startingTable[rowAbove][col + 1].getEnergyH());
+        } else if (col == widthPixels - 1) //all the way on the right
+        {
+            minEnergy = Math.min(startingTable[rowAbove][col].getEnergyH(),
+                    startingTable[rowAbove][col - 1].getEnergyH());
+        } else
+        {
+            minEnergy = Math.min(startingTable[rowAbove][col].getEnergyH(),
+                    startingTable[rowAbove][col + 1].getEnergyH());
+            minEnergy = Math.min(minEnergy, startingTable[rowAbove][col - 1].getEnergyH());
+        }
+        return minEnergy;
     }
 
     private double findLowestVerticalBelow(Pixel self, Pixel downLeft,

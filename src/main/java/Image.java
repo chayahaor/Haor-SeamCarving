@@ -7,11 +7,11 @@ import java.io.IOException;
 public class Image {
 
     private Pixel[][] pixelMatrix;
-    private int heightPixels;
-    private int widthPixels;
+    private final int heightPixels;
+    private final int widthPixels;
 
-    public Image(String filePath) throws IOException {
-        BufferedImage image = ImageIO.read(Image.class.getResourceAsStream(filePath));
+    public Image(BufferedImage image)
+    {
         heightPixels = image.getHeight();
         widthPixels = image.getWidth();
 
