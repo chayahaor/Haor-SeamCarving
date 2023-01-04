@@ -1,28 +1,33 @@
 import java.awt.*;
 
-public class Energy {
+public class Energy
+{
 
     private int widthPixels;
     private int heightPixels;
     private Pixel[][] startingImage;
-    private double minEnergy = 255 * 255 * 6;
-    private double maxEnergy = 255 * 255 * 6;
+    private static final int MAX_POSSIBLE_VALUE = 255 * 255 * 6;
+    private double minEnergy = MAX_POSSIBLE_VALUE;
+    private double maxEnergy = MAX_POSSIBLE_VALUE;
     private double[][] energyTable;
 
-    public Energy() {
+    public Energy()
+    {
 
     }
 
-    public void updateCellEnergy(Pixel[][] startImage) {
+    public void updateCellEnergy(Pixel[][] startImage)
+    {
         this.widthPixels = startImage[0].length;
         this.heightPixels = startImage.length;
         energyTable = new double[heightPixels][widthPixels];
         this.startingImage = startImage;
         calculateOriginalEnergy();
-        adjustEnergyTable();
+        adjustCellEnergy();
     }
 
-    private void calculateOriginalEnergy() {
+    private void calculateOriginalEnergy()
+    {
         double currentEnergy;
         for (int row = 0; row < heightPixels; row++)
         {
@@ -41,13 +46,14 @@ public class Energy {
                     Color right = startingImage[row][col + 1].getColor();
                     currentEnergy = middleEnergy(up, down, left, right);
                     energyTable[row][col] = currentEnergy;
-                    adjustMaxAndMin(currentEnergy);
+                    adjustMin(currentEnergy);
                 }
             }
         }
     }
 
-    private double middleEnergy(Color up, Color down, Color left, Color right) {
+    private double middleEnergy(Color up, Color down, Color left, Color right)
+    {
 
         return ((up.getRed() - down.getRed()) * (up.getRed() - down.getRed())
                 + (up.getGreen() - down.getGreen()) * (up.getGreen() - down.getGreen())
@@ -57,32 +63,30 @@ public class Energy {
                + (left.getBlue() - right.getBlue()) * (left.getBlue() - right.getBlue());
     }
 
-    private double nonMiddleEnergy() {
-        return 255 * 255 * 6;
+    private double nonMiddleEnergy()
+    {
+        return MAX_POSSIBLE_VALUE;
     }
 
-    private void adjustMaxAndMin(double currentEnergy) {
-        if (currentEnergy > maxEnergy) //TODO: is this needed? Or is max always going to be max?
-        {
-            maxEnergy = currentEnergy;
-        }
+    private void adjustMin(double currentEnergy)
+    {
         if (currentEnergy < minEnergy)
         {
             minEnergy = currentEnergy;
         }
     }
 
-    private void adjustEnergyTable() {
+    private void adjustCellEnergy()
+    {
         for (int row = 0; row < heightPixels; row++)
         {
             for (int col = 0; col < widthPixels; col++)
             {
-                adjust(energyTable[row][col], startingImage[row][col]);
+                startingImage[row][col].setCellEnergy(
+                        ((energyTable[row][col] - minEnergy) * 255.0)
+                        / (maxEnergy - minEnergy));
             }
         }
     }
 
-    private void adjust(double origEnergy, Pixel spot) {
-        spot.setCellEnergy(((origEnergy - minEnergy) * 255.0) / (maxEnergy - minEnergy));
-    }
 }

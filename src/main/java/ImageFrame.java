@@ -72,9 +72,8 @@ public class ImageFrame extends JFrame
     public void loadSeamImage(BufferedImage image)
     {
         startingImage = new Image(image);
+
         // add code here to load the image into your seam carver code
-        Energy energy = new Energy();
-        energy.updateCellEnergy(startingImage.getPixelMatrix());
 
         setSize(image.getWidth(null), image.getHeight(null));
         pack();
@@ -82,9 +81,9 @@ public class ImageFrame extends JFrame
 
     private void setSeamImageSize(int width, int height)
     {
+        // generate a newImage with the new width and height
         Pixel[][] middleImages = startingImage.getPixelMatrix();
         Energy energy = new Energy();
-        // generate a newImage with the new width and height
         Seam seam = new Seam();
         SeamRemover seamRemover = new SeamRemover();
 
@@ -93,16 +92,16 @@ public class ImageFrame extends JFrame
         for (int col = startingWidth; col < width; col++)
         {
             energy.updateCellEnergy(middleImages);
-            seam.calculateLowestVerticalSeam(middleImages);
-            seamRemover.removeVertical(middleImages, seam.getLowestVerticalSeam());
-            middleImages = seamRemover.getEnding();
+            middleImages = seamRemover.removeVertical(
+                    middleImages, seam.getLowestVerticalSeam(middleImages));
         }
 
         for (int row = height; row < startingHeight; row++)
         {
             energy.updateCellEnergy(middleImages);
-            seam.calculateLowestHorizontalSeam(middleImages);
-            seamRemover.removeHorizontal(middleImages, seam.getLowestHorizontalSeam());
+            seam.getLowestHorizontalSeam(middleImages);
+            middleImages = seamRemover.removeHorizontal(
+                    middleImages, seam.getLowestHorizontalSeam(middleImages));
         }
         BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         for (int row = 0; row < height - 1; row++)

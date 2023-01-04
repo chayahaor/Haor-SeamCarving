@@ -5,32 +5,34 @@ import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-class EnergyTest {
+class EnergyTest
+{
 
     @Test
-    void energy4x4() {
+    void energy4x4()
+    {
         //given
-        Color color1 = new Color(255, 0, 0);
-        Color color2 = new Color(0, 255, 0);
-        Color color3 = new Color(0, 0, 255);
+        int red = Color.RED.getRGB();
+        int green = Color.GREEN.getRGB();
+        int blue = Color.BLUE.getRGB();
 
         Pixel[][] image = new Pixel[][]{
-                {new Pixel(color1.getRGB()),
-                        new Pixel(color2.getRGB()),
-                        new Pixel(color3.getRGB()),
-                        new Pixel(color1.getRGB())},
-                {new Pixel(color2.getRGB()),
-                        new Pixel(color3.getRGB()),
-                        new Pixel(color1.getRGB()),
-                        new Pixel(color1.getRGB())},
-                {new Pixel(color3.getRGB()),
-                        new Pixel(color1.getRGB()),
-                        new Pixel(color1.getRGB()),
-                        new Pixel(color2.getRGB())},
-                {new Pixel(color1.getRGB()),
-                        new Pixel(color1.getRGB()),
-                        new Pixel(color2.getRGB()),
-                        new Pixel(color3.getRGB())}};
+                {new Pixel(red),
+                        new Pixel(green),
+                        new Pixel(blue),
+                        new Pixel(red)},
+                {new Pixel(green),
+                        new Pixel(blue),
+                        new Pixel(red),
+                        new Pixel(red)},
+                {new Pixel(blue),
+                        new Pixel(red),
+                        new Pixel(red),
+                        new Pixel(green)},
+                {new Pixel(red),
+                        new Pixel(red),
+                        new Pixel(green),
+                        new Pixel(blue)}};
         Energy energy = new Energy();
         energy.updateCellEnergy(image);
         double[][] calculatedEnergy = new double[image.length][image[0].length];
@@ -54,22 +56,23 @@ class EnergyTest {
 
 
     @Test
-    void calculateEnergy() {
+    void calculateEnergy()
+    {
         //given
-        Color color1 = new Color(255, 0, 0);
-        Color color2 = new Color(0, 255, 0);
-        Color color3 = new Color(0, 0, 255);
+        int red = Color.RED.getRGB();
+        int green = Color.GREEN.getRGB();
+        int blue = Color.BLUE.getRGB();
 
         Pixel[][] image = new Pixel[][]{
-                {new Pixel(color1.getRGB()),
-                        new Pixel(color2.getRGB()),
-                        new Pixel(color3.getRGB())},
-                {new Pixel(color2.getRGB()),
-                        new Pixel(color3.getRGB()),
-                        new Pixel(color1.getRGB())},
-                {new Pixel(color3.getRGB()),
-                        new Pixel(color1.getRGB()),
-                        new Pixel(color2.getRGB())}};
+                {new Pixel(red),
+                        new Pixel(green),
+                        new Pixel(blue)},
+                {new Pixel(green),
+                        new Pixel(blue),
+                        new Pixel(red)},
+                {new Pixel(blue),
+                        new Pixel(red),
+                        new Pixel(green)}};
         Energy energy = new Energy();
         energy.updateCellEnergy(image);
         double[][] calculatedEnergy = new double[image.length][image[0].length];

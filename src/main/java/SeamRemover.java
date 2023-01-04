@@ -9,7 +9,7 @@ public class SeamRemover
 
     }
 
-    public void removeVertical(Pixel[][] starting, ArrayList<Integer> seamRemoving)
+    public Pixel[][] removeVertical(Pixel[][] starting, ArrayList<Integer> seamRemoving)
     {
         ending = new Pixel[starting.length][starting[0].length - 1];
 
@@ -22,10 +22,11 @@ public class SeamRemover
             System.arraycopy(starting[rows - row], 0, ending[rows - row], 0, spot);
             System.arraycopy(starting[rows - row], spot + 1, ending[rows - row], spot, cols - spot);
         }
+        return ending;
     }
 
     //TODO: check that this works. Write tests
-    public void removeHorizontal(Pixel[][] starting, ArrayList<Integer> seamRemoving)
+    public Pixel[][] removeHorizontal(Pixel[][] starting, ArrayList<Integer> seamRemoving)
     {
         ending = new Pixel[starting.length - 1][starting[0].length];
         int rows = starting.length - 1;
@@ -36,11 +37,7 @@ public class SeamRemover
             System.arraycopy(starting, 0, ending, 0, spot);
             System.arraycopy(starting, spot + 1, ending, spot, rows - spot);
         }
-
-    }
-
-    public Pixel[][] getEnding()
-    {
         return ending;
     }
+
 }

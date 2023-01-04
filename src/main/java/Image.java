@@ -4,7 +4,8 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class Image {
+public class Image
+{
 
     private Pixel[][] pixelMatrix;
     private final int heightPixels;
@@ -26,7 +27,8 @@ public class Image {
         }
     }
 
-    public void saveBrightnessFile() {
+    public void saveBrightnessFile()
+    {
         BufferedImage bufferedImage =
                 new BufferedImage(widthPixels, heightPixels, BufferedImage.TYPE_INT_RGB);
 
@@ -50,16 +52,10 @@ public class Image {
         }
     }
 
-    public Pixel[][] getPixelMatrix() {
+    public Pixel[][] getPixelMatrix()
+    {
         return pixelMatrix;
     }
 
-    public int getHeightPixels() {
-        return heightPixels;
-    }
-
-    public int getWidthPixels() {
-        return widthPixels;
-    }
 
 }
