@@ -23,7 +23,7 @@ public class Energy
         energyTable = new double[heightPixels][widthPixels];
         this.startingImage = startImage;
         calculateOriginalEnergy();
-        adjustCellEnergy();
+        //adjustCellEnergy();
     }
 
     private void calculateOriginalEnergy()

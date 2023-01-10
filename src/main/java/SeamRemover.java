@@ -34,6 +34,7 @@ public class SeamRemover
         for (int col = starting[0].length - 1; col >= 0; col--)
         {
             spot = seamRemoving.get(col);
+            //TODO: remove System.arraycopy
             System.arraycopy(starting, 0, ending, 0, spot);
             System.arraycopy(starting, spot + 1, ending, spot, rows - spot);
         }
