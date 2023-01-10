@@ -36,7 +36,7 @@ public class Energy
                 if (row == 0 || row == heightPixels - 1
                     || col == 0 || col == widthPixels - 1) //along an edge
                 {
-                    energyTable[row][col] = nonMiddleEnergy();
+                    startingImage[row][col].setCellEnergy(MAX_POSSIBLE_VALUE);
                 } else
                 {
                     //middle case
@@ -45,8 +45,9 @@ public class Energy
                     Color left = startingImage[row][col - 1].getColor();
                     Color right = startingImage[row][col + 1].getColor();
                     currentEnergy = middleEnergy(up, down, left, right);
-                    energyTable[row][col] = currentEnergy;
-                    adjustMin(currentEnergy);
+                    startingImage[row][col].setCellEnergy(currentEnergy);
+                    /*energyTable[row][col] = currentEnergy;
+                    adjustMin(currentEnergy);*/
                 }
             }
         }
@@ -63,10 +64,6 @@ public class Energy
                + (left.getBlue() - right.getBlue()) * (left.getBlue() - right.getBlue());
     }
 
-    private double nonMiddleEnergy()
-    {
-        return MAX_POSSIBLE_VALUE;
-    }
 
     private void adjustMin(double currentEnergy)
     {

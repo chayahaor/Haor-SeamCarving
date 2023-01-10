@@ -44,11 +44,14 @@ class EnergyTest
             }
         }
         //when
+        double maxEnergy = 255 * 255 * 6;
+        double middleCell = 4 * (255 * 255); //2 directions of max difference in two colors each
+
         double[][] expected = new double[][]{
-                {255.0, 255.0, 255.0, 255.0},
-                {255.0, 0.0, 0.0, 255.0},
-                {255.0, 0.0, 0.0, 255.0},
-                {255.0, 255.0, 255.0, 255.0}};
+                {maxEnergy, maxEnergy, maxEnergy, maxEnergy},
+                {maxEnergy, middleCell, middleCell, maxEnergy},
+                {maxEnergy, middleCell, middleCell, maxEnergy},
+                {maxEnergy, maxEnergy, maxEnergy, maxEnergy}};
 
         //then
         assertTrue(Arrays.deepEquals(expected, calculatedEnergy));
@@ -84,10 +87,13 @@ class EnergyTest
             }
         }
         //when
+        double maxEnergy = 255 * 255 * 6;
+        double middleCell = 4 * (255 * 255); //2 directions of max difference in two colors each
+
         double[][] expected = new double[][]{
-                {255.0, 255.0, 255.0},
-                {255.0, 0.0, 255.0},
-                {255.0, 255.0, 255.0}};
+                {maxEnergy, maxEnergy, maxEnergy},
+                {maxEnergy, middleCell, maxEnergy},
+                {maxEnergy, maxEnergy, maxEnergy}};
 
         //then
         assertTrue(Arrays.deepEquals(expected, calculatedEnergy));
