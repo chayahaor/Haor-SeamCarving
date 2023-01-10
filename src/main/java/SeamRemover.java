@@ -25,18 +25,37 @@ public class SeamRemover
         return ending;
     }
 
-    //TODO: check that this works. Write tests
     public Pixel[][] removeHorizontal(Pixel[][] starting, ArrayList<Integer> seamRemoving)
     {
         ending = new Pixel[starting.length - 1][starting[0].length];
-        int rows = starting.length - 1;
+        int height = starting.length;
+        int width = starting[0].length;
         int spot;
-        for (int col = starting[0].length - 1; col >= 0; col--)
+        boolean passedSkipped;
+        int indexToRemove = 0;
+        for (int col = width - 1; col >= 0; col--)
         {
-            spot = seamRemoving.get(col);
-            System.arraycopy(starting, 0, ending, 0, spot);
-            System.arraycopy(starting, spot + 1, ending, spot, rows - spot);
+            passedSkipped = false;
+            spot = seamRemoving.get(indexToRemove++);
+            for (int row = 0; row < height; row++)
+            {
+                if (row != spot)
+                {
+                    if (passedSkipped)
+                    {
+                        ending[row - 1][col] = starting[row][col];
+                    } else
+                    {
+                        ending[row][col] = starting[row][col];
+                    }
+                } else
+                {
+                    passedSkipped = true;
+                }
+            }
         }
+
+
         return ending;
     }
 

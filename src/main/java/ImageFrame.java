@@ -41,6 +41,7 @@ public class ImageFrame extends JFrame
         try
         {
             image = ImageIO.read(ImageFrame.class.getResourceAsStream("/Seam.jpg"));
+            startingImage = new Image(image);
             loadSeamImage(image);
         } catch (IOException e)
         {
@@ -61,6 +62,7 @@ public class ImageFrame extends JFrame
             File file = new File(fileChooser.getSelectedFile().getAbsolutePath());
             try
             {
+                startingImage = new Image(ImageIO.read(file));
                 loadSeamImage(ImageIO.read(file));
             } catch (IOException e)
             {
@@ -71,9 +73,10 @@ public class ImageFrame extends JFrame
 
     public void loadSeamImage(BufferedImage image)
     {
-        startingImage = new Image(image);
-
         // add code here to load the image into your seam carver code
+
+        ImageIcon imageIcon = new ImageIcon(image);
+        imageLabel.setIcon(imageIcon);
 
         setSize(image.getWidth(null), image.getHeight(null));
         pack();
@@ -82,33 +85,34 @@ public class ImageFrame extends JFrame
     private void setSeamImageSize(int width, int height)
     {
         // generate a newImage with the new width and height
-        Pixel[][] middleImages = startingImage.getPixelMatrix();
+        Pixel[][] pixels = startingImage.getPixelMatrix();
         Energy energy = new Energy();
         Seam seam = new Seam();
         SeamRemover seamRemover = new SeamRemover();
 
-        int startingHeight = imageLabel.getHeight();
-        int startingWidth = imageLabel.getWidth();
-        for (int col = startingWidth; col < width; col++)
+
+        int colsToRemove = startingImage.getPixelMatrix()[0].length - width;
+        for (int col = 0; col < colsToRemove; col++)
         {
-            energy.updateCellEnergy(middleImages);
-            middleImages = seamRemover.removeVertical(
-                    middleImages, seam.getLowestVerticalSeam(middleImages));
+            energy.updateCellEnergy(pixels);
+            pixels = seamRemover.removeVertical(
+                    pixels, seam.getLowestVerticalSeam(pixels));
         }
 
-        for (int row = height; row < startingHeight; row++)
+        int rowsToRemove = startingImage.getPixelMatrix().length - height;
+        for (int row = 0; row < rowsToRemove; row++)
         {
-            energy.updateCellEnergy(middleImages);
-            seam.getLowestHorizontalSeam(middleImages);
-            middleImages = seamRemover.removeHorizontal(
-                    middleImages, seam.getLowestHorizontalSeam(middleImages));
+            energy.updateCellEnergy(pixels);
+            pixels = seamRemover.removeHorizontal(
+                    pixels, seam.getLowestHorizontalSeam(pixels));
         }
+
         BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
-        for (int row = 0; row < height - 1; row++)
+        for (int row = 0; row < height; row++)
         {
-            for (int col = 0; col < width - 1; col++)
+            for (int col = 0; col < width; col++)
             {
-                bufferedImage.setRGB(col, row, middleImages[row][col].getColor().getRGB());
+                bufferedImage.setRGB(col, row, pixels[row][col].getColor().getRGB());
             }
         }
         ImageIcon imageIcon = new ImageIcon(bufferedImage);
