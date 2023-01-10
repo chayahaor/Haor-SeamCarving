@@ -25,7 +25,6 @@ public class SeamRemover
         return ending;
     }
 
-    //TODO: check that this works. Write tests
     public Pixel[][] removeHorizontal(Pixel[][] starting, ArrayList<Integer> seamRemoving)
     {
         ending = new Pixel[starting.length - 1][starting[0].length];

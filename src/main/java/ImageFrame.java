@@ -74,7 +74,6 @@ public class ImageFrame extends JFrame
     public void loadSeamImage(BufferedImage image)
     {
         // add code here to load the image into your seam carver code
-        //TODO: set starting image here to be image selected
 
         ImageIcon imageIcon = new ImageIcon(image);
         imageLabel.setIcon(imageIcon);

@@ -109,7 +109,6 @@ class SeamRemoverTest
 
         //then
 
-        //TODO: Adjust ending and to Remove!!
         Pixel[][] ending = new Pixel[][]{
                 {pixel10, pixel01, pixel12, pixel03, pixel04},
                 {pixel20, pixel21, pixel22, pixel23, pixel14}
