@@ -91,14 +91,17 @@ public class ImageFrame extends JFrame
         Seam seam = new Seam();
         SeamRemover seamRemover = new SeamRemover();
 
-        for (int col = startingImage.getPixelMatrix().length; col > width; col--)
+
+        int colsToRemove = startingImage.getPixelMatrix()[0].length - width;
+        for (int col = 0; col < colsToRemove; col++)
         {
             energy.updateCellEnergy(pixels);
             pixels = seamRemover.removeVertical(
                     pixels, seam.getLowestVerticalSeam(pixels));
         }
 
-        for (int row = startingImage.getPixelMatrix()[0].length; row > height; row--)
+        int rowsToRemove = startingImage.getPixelMatrix().length - height;
+        for (int row = 0; row < rowsToRemove; row++)
         {
             energy.updateCellEnergy(pixels);
             pixels = seamRemover.removeHorizontal(
