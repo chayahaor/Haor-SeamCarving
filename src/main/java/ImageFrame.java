@@ -87,22 +87,22 @@ public class ImageFrame extends JFrame
         Seam seam = new Seam();
         SeamRemover seamRemover = new SeamRemover();
 
-        int startingHeight = imageLabel.getHeight();
-        int startingWidth = imageLabel.getWidth();
-        for (int col = startingWidth; col < width; col++)
+        while (middleImages.length > width)
+        //for (int col = middleImages.length; col < width; col++)
         {
             energy.updateCellEnergy(middleImages);
             middleImages = seamRemover.removeVertical(
                     middleImages, seam.getLowestVerticalSeam(middleImages));
         }
 
-        for (int row = height; row < startingHeight; row++)
+        while (middleImages[0].length > height)
+        //for (int row = middleImages[0].length; row < height; row++)
         {
             energy.updateCellEnergy(middleImages);
-            seam.getLowestHorizontalSeam(middleImages);
             middleImages = seamRemover.removeHorizontal(
                     middleImages, seam.getLowestHorizontalSeam(middleImages));
         }
+
         BufferedImage bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
         for (int row = 0; row < height - 1; row++)
         {
